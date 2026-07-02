@@ -1,188 +1,264 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mariana Contreras - Arquitecta - Portafolio Personal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Arq. Mariana Contreras | Portafolio</title>
+    <!-- Importando tipografías Albert Sans (Encabezados) y Poppins (Textos) de Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* --- ESTILOS GLOBALES --- */
+        /* --- Variables de Color --- */
         :root {
-            /* Colores */
-            --bg-color: #f7f3f3; /* Fondo gris claro */
-            --text-color: #333333; /* Texto gris oscuro */
-            --sub-text-color: #666666; /* Subtexto gris medio */
-            --heading-color: #1a1a1a; /* Títulos gris muy oscuro */
-            
-            /* Tipografía */
-            --font-family: 'Poppins', sans-serif;
-            --text-size: 16px;
-            
-            /* Espaciado */
-            --content-width: 1200px;
-            --section-margin: 100px 0;
-            --card-margin: 30px;
+            --bg-color: #e9e9e9;
+            --accent-light: #c3c3b0;
+            --text-light: #858577;
+            --text-medium: #4b4b43;
+            --text-dark: #33332A;
+        }
+
+        /* --- Estilos Generales --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-family);
+            /* Poppins para el texto general (párrafos, descripciones) */
+            font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            line-height: 1.7;
-            font-size: var(--text-size);
-            font-weight: 300;
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
-        h1, h2, h3, h4 {
-            font-family: var(--font-family);
-            color: var(--heading-color);
-            font-weight: 500;
+        /* Albert Sans para todos los títulos y encabezados */
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo,
+        .project-title {
+            font-family: 'Albert Sans', sans-serif;
         }
 
-        h1 { font-size: 42px; line-height: 1.2; font-weight: 600; }
-        h2 { font-size: 32px; font-weight: 500; }
-        h3 { font-size: 20px; font-weight: 500; margin: 0 0 10px; text-transform: uppercase; letter-spacing: 1.5px; }
+        a {
+            text-decoration: none;
+            color: var(--text-medium);
+            transition: color 0.3s ease;
+        }
 
-        p { color: var(--sub-text-color); margin: 0 0 20px; }
-        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
-        a:hover { opacity: 0.7; }
+        a:hover {
+            color: var(--text-dark);
+        }
 
-        /* Contenedor principal */
         .container {
-            max-width: var(--content-width);
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 5%;
         }
 
-        /* --- ENCABEZADO --- */
+        /* --- Encabezado (Header) --- */
         header {
             padding: 40px 0;
-            background-color: var(--bg-color);
-            width: 100%;
+            border-bottom: 1px solid rgba(133, 133, 119, 0.2);
         }
 
-        .header-content {
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .name-logo {
-            font-size: 18px;
+        .logo {
+            font-size: 1.1rem;
             font-weight: 500;
-            color: var(--heading-color);
+            color: var(--text-dark);
         }
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 30px;
+            font-size: 0.9rem;
         }
 
-        .nav-link {
-            font-size: 14px;
-            color: var(--text-color);
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding-bottom: 3px;
+        .nav-links a {
+            position: relative;
+            padding-bottom: 4px;
         }
 
-        .nav-link.active {
-            border-bottom: 2px solid var(--heading-color);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1.5px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--text-dark);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* --- SECCIÓN HERO --- */
+        .nav-links a.active {
+            color: var(--text-dark);
+        }
+
+        .nav-links a.active::after,
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .btn-icon {
+            background-color: var(--text-medium);
+            color: var(--bg-color);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* --- Sección Hero --- */
         .hero {
-            margin: 160px 0;
+            padding: 120px 0;
             text-align: center;
         }
 
-        .hero-text {
-            max-width: 900px;
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            max-width: 800px;
             margin: 0 auto;
+            line-height: 1.4;
         }
 
-        /* --- SECCIÓN ACERCA DE MÍ --- */
+        /* --- Sección Acerca de mi --- */
         .about {
-            display: flex;
-            gap: 120px;
-            margin: var(--section-margin);
-            align-items: flex-start;
+            padding: 80px 0;
         }
 
-        .about-title-col {
-            flex: 0 0 300px;
-        }
-
-        .about-title-col h2 {
-            margin: 0;
-        }
-
-        .about-content-col {
-            flex: 1;
-        }
-
-        /* --- SECCIÓN PORTAFOLIO --- */
-        .portfolio {
-            margin: var(--section-margin);
-        }
-
-        .project-grid {
+        .about-content {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr 2fr;
             gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* --- Estadísticas --- */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding-bottom: 80px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .stat-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* --- Proyectos --- */
+        .projects-section {
+            padding: 60px 0;
+        }
+
+        .projects-section .section-title {
+            margin-bottom: 40px;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        /* Ambas secciones usan 3 columnas ahora */
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
         }
 
         .project-card {
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            /* Cambia el cursor para invitar a interactuar */
         }
 
-        .project-image-container {
+        /* Contenedor de la imagen para enmascarar el zoom */
+        .project-image-wrapper {
             width: 100%;
-            padding-top: 66.67%; /* Relación de aspecto 3:2 */
-            position: relative;
+            height: 280px;
             overflow: hidden;
-            background-color: #e0e0e0; /* Marcador de posición de imagen */
+            /* Evita que la imagen se salga al hacer zoom */
+            background-color: var(--accent-light);
+            margin-bottom: 20px;
         }
 
-        .project-image-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .project-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Transición suave de zoom */
         }
 
-        .project-details {
-            padding: 30px 0;
+        /* Animación al pasar el cursor (Hover) */
+        .project-card:hover .project-image {
+            transform: scale(1.06);
+            /* Zoom tenue del 6% */
         }
 
         .project-title {
-            font-size: 20px;
-            font-weight: 500;
-            color: var(--heading-color);
-            margin: 0 0 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
         }
 
-        .project-description {
-            font-size: 14px;
-            color: var(--sub-text-color);
-            margin: 0;
+        .project-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 300;
         }
 
-        /* --- PIE DE PÁGINA --- */
+        /* --- Pie de página (Footer) --- */
         footer {
-            padding: 100px 0 40px;
-            background-color: var(--bg-color);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            font-size: 12px;
-            color: var(--sub-text-color);
+            margin-top: 80px;
+            padding: 60px 0;
+            border-top: 1px solid rgba(133, 133, 119, 0.2);
         }
 
         .footer-content {
@@ -191,155 +267,230 @@
             align-items: flex-start;
         }
 
-        .footer-contact-info h4 {
-            font-size: 18px;
-            margin: 0 0 20px;
-            font-weight: 500;
-            color: var(--heading-color);
+        .footer-left h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
 
-        .footer-contact-info p {
-            font-size: 12px;
-            margin: 0 0 5px;
-            color: var(--sub-text-color);
+        .footer-left p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            font-weight: 300;
         }
 
-        .copyright {
-            margin-top: 30px;
-            font-size: 11px;
-            color: #999;
-        }
-
-        .footer-nav {
+        .footer-right {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            align-items: flex-end;
+            text-align: right;
+            font-size: 0.9rem;
         }
 
-        .footer-nav-link {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .copyright {
+            margin-top: 20px;
+            color: var(--text-light);
+            font-size: 0.85rem;
         }
 
-        /* --- DISEÑO MÓVIL --- */
+        /* --- Diseño Responsivo (Móviles y Tabletas) --- */
         @media (max-width: 900px) {
-            :root { --section-margin: 70px 0; }
-            h1 { font-size: 32px; }
-            h2 { font-size: 26px; }
-            .header-content { padding: 20px 0; }
-            .hero { margin: 100px 0; }
-            .about { flex-direction: column; gap: 40px; }
-            .about-title-col { flex: 1; }
-            .project-grid { grid-template-columns: 1fr; gap: 40px; }
-            footer { padding: 70px 0 30px; }
-            .footer-content { flex-direction: column; gap: 40px; align-items: center; text-align: center; }
-            .footer-nav { align-items: center; }
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-right {
+                text-align: left;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- ENCABEZADO -->
+    <!-- Encabezado -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="name-logo">Mariana Contreras</a>
-                <nav class="nav-links">
-                    <a href="#portfolio" class="nav-link active">Portafolio</a>
-                    <a href="#cv" class="nav-link">CV</a>
-                </nav>
-            </div>
+        <div class="container navbar">
+            <div class="logo">Arq. Mariana Contreras</div>
+            <nav class="nav-links">
+                <a href="#" class="active">Portafolio</a>
+                <a href="#">CV</a>
+
+            </nav>
         </div>
     </header>
 
-    <!-- SECCIÓN HERO (Presentación principal) -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-text">
-                <h1>Hola, soy Mariana. Estoy lista para poder ayudarte a materializar ese proyecto complejo y de gran escala.</h1>
+    <!-- Mensaje Principal -->
+    <section class="hero container">
+        <h1>Hola, soy Mariana. Estoy lista para poder ayudarte a materializar ese proyecto complejo y de gran escala.
+        </h1>
+    </section>
+
+    <!-- Acerca de Mi -->
+    <section class="about container">
+        <div class="about-content">
+            <h2 class="section-title">Acerca de mi</h2>
+            <div class="about-text">
+                <p>Mi nombre es Mariana Contreras Castillo, soy una arquitecta bilingüe (Inglés IELTS 6.5) con más de 12
+                    años de experiencia en diseño arquitectónico y dirección de proyectos de gran escala. Historial
+                    comprobado de rápido ascenso hacia la alta dirección, liderando portafolios complejos, garantizando
+                    la rentabilidad (ROI), el cumplimiento normativo estricto y la integración de materialidad regional
+                    estratégica. Especializada en la optimización de recursos, gestión de capital humano y
+                    estructuración de calendarios, logrando reducir costos operativos y mejorando la eficiencia de
+                    equipos interdisciplinarios. Orientada a la viabilidad financiera, el diseño racional y la
+                    rentabilidad.</p>
+                <p>Mi portafolio incluye algunos de los principales proyectos en los que he participado en fases de
+                    coordinación y diseño, en las áreas de vivienda multifamiliar y planes maestros.</p>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats">
+            <div class="stat-item">
+                <h3>12+ años</h3>
+                <p>Tengo más de 12 años trabajando en proyectos de arquitectura.</p>
+            </div>
+            <div class="stat-item">
+                <h3>25 proyectos</h3>
+                <p>Los proyectos en los que he trabajado van desde escala residencial unifamiliar hasta edificios
+                    multifamiliares de gran escala y planes maestros.</p>
+            </div>
+            <div class="stat-item">
+                <h3>1 premio</h3>
+                <p>Premios Noldi Schreck 2025 – Arquitectura Institucional Pública– 3er lugar<br>(LavallePeniche+Quesnel
+                    Arqs.)</p>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN ACERCA DE MÍ -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-title-col">
-                <h2>Acerca de mi</h2>
+    <!-- Proyectos Destacados (Ahora 3 Columnas) -->
+    <section class="projects-section container">
+        <h2 class="section-title">Proyectos Arquitectónicos Destacados</h2>
+
+        <div class="projects-grid grid-3">
+
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="img/portadas/CATVI_portada.jpg" alt="CATVI DZIBILCHALTÚN" class="project-image">
+                </div>
+                <h3 class="project-title">CATVI DZIBILCHALTÚN</h3>
+                <p class="project-desc">Centro de Atención de Visitantes Zona Arqueológica Dzibilchaltún. Año 2025</p>
             </div>
-            <div class="about-content-col">
-                <p>Mi nombre es Mariana Contreras Castillo, soy una arquitecta bilingüe (Inglés IELTS 6.5) con más de 12 años de experiencia en diseño arquitectónico y dirección de proyectos de gran escala. Historial comprobado de rápido ascenso hacia la alta dirección, liderando portafolios complejos, garantizando la rentabilidad (ROI), el cumplimiento normativo estricto y la integración de materialidad regional estratégica. Especializada en la optimización de recursos, gestión de capital humano y estructuración de calendarios, logrando reducir costos operativos y mejorando la eficiencia de equipos interdisciplinarios. Orientada a la viabilidad financiera, el diseño racional y la rentabilidad.</p>
-                <p>Mi portafolio incluye algunos de los principales proyectos en los que he participado en fases de coordinación y diseño, en las áreas de vivienda multifamiliar y planes maestros.</p>
+
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="img/portadas/CONAVI_portada.png" alt="VIVIENDAS CONAVI" class="project-image">
+                </div>
+                <h3 class="project-title">VIVIENDAS CONAVI</h3>
+                <p class="project-desc">Conjunto habitacional de 420 viviendas de interés social en Puerto Morelos,
+                    Quintana Roo.</p>
             </div>
+
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="img/portadas/COZUMEL_portada.png" alt="BAHÍA TURQUESA" class="project-image">
+                </div>
+                <h3 class="project-title">BAHÍA TURQUESA</h3>
+                <p class="project-desc">Conjunto habitacional de condo-hotel de 150 viviendas en Cozumel, Quintana Roo.
+                    Año 2024</p>
+            </div>
+
         </div>
     </section>
 
-    <!-- SECCIÓN PORTAFOLIO -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="project-grid">
+    <!-- Planes Maestros (3 Columnas) -->
+    <section class="projects-section container">
+        <h2 class="section-title">Planes Maestros Destacados</h2>
 
-                <!-- 
-                  == PROYECTO 1 ==
-                  Para personalizar este proyecto:
-                  1. Cambia "ruta-a-tu-imagen.jpg" por la ubicación de tu imagen.
-                  2. Edita el texto del título y la descripción.
-                -->
-                <div class="project-card">
-                    <div class="project-image-container">
-                        <!-- Imagen de ejemplo -->
-                        <img src="ruta-a-tu-imagen.jpg" alt="CATVI DZIBILCHALTÚN">
-                    </div>
-                    <div class="project-details">
-                        <h3 class="project-title">CATVI DZIBILCHALTÚN</h3>
-                        <p class="project-description">Centro de Atención de Visitantes Zona Arqueológica Dzibilchaltún. Año 2025</p>
-                    </div>
+        <div class="projects-grid grid-3">
+
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="img/portadas/SEYE_portada.png" alt="DISTRITO SEYÉ" class="project-image">
                 </div>
+                <h3 class="project-title">DISTRITO SEYÉ</h3>
+                <p class="project-desc">Masterplan de 317 HA con lotes unifamiliares y multifamiliares, campo de golf,
+                    áreas de uso mixto y comerciales. Año 2025</p>
+            </div>
 
-                <!-- 
-                  == PROYECTO 2 ==
-                  Sigue los mismos pasos que para el Proyecto 1.
-                -->
-                <div class="project-card">
-                    <div class="project-image-container">
-                        <!-- Imagen de ejemplo -->
-                        <img src="ruta-a-tu-imagen.jpg" alt="VIVIENDAS CONAVI">
-                    </div>
-                    <div class="project-details">
-                        <h3 class="project-title">VIVIENDAS CONAVI</h3>
-                        <p class="project-description">Conjunto habitacional de 420 viviendas de interés social en Puerto Morelos, Quintana Roo.</p>
-                    </div>
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="img/portadas/IKAL_portada.png" alt="IKAL" class="project-image">
                 </div>
+                <h3 class="project-title">IKAL</h3>
+                <p class="project-desc">Masterplan de 48 HA con lotes de vivienda unifamiliar, casa club, áreas de uso
+                    mixto y comerciales. Año 2022</p>
+            </div>
 
-                <!-- 
-                  == CÓMO AGREGAR UN NUEVO PROYECTO ==
-                  Para añadir un nuevo proyecto, simplemente copia todo el bloque de código 
-                  <div class="project-card"> ... </div> (como los de arriba) y pégalo justo aquí abajo.
-                  El diseño se ajustará automáticamente.
-                -->
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="img/portadas/KOMUNAH_portada.png" alt="KOMUNAH" class="project-image">
+                </div>
+                <h3 class="project-title">KOMUNAH</h3>
+                <p class="project-desc">Masterplan de 130 HA con lotes unifamiliares y multifamiliares, casa club, áreas
+                    de uso mixto y comerciales. Año 2021</p>
+            </div>
 
-            </div> <!-- fin .project-grid -->
-        </div> <!-- fin .container -->
+        </div>
     </section>
 
-    <!-- PIE DE PÁGINA (Footer) -->
+    <!-- Pie de Página -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-contact-info">
-                    <h4>Mariana Contreras</h4>
-                    <p>Mérida, Yucatán, México. | (999) 9016511 | mariana.contreras7@gmail.com</p>
-                    <div class="copyright">© Mariana Contreras, 2026</div>
-                </div>
-                <nav class="footer-nav">
-                    <a href="#portfolio" class="footer-nav-link">Portafolio</a>
-                    <a href="#cv" class="footer-nav-link">CV</a>
-                </nav>
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h2>Mariana Contreras</h2>
+                <p>Mérida, Yucatán, México. | (999) 9016511 | mariana.contreras7@gmail.com</p>
+                <p class="copyright">© Mariana Contreras, 2026</p>
+            </div>
+            <div class="footer-right">
+                <a href="#">Portafolio</a>
+                <a href="#">CV</a>
             </div>
         </div>
-    </header>
+    </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    // Prevent default jump for placeholder hashes
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+
+                    // Remove 'active' class from all links and add to the clicked one
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
